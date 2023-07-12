@@ -3,11 +3,12 @@ import { Button, Grid, TextField, Typography, Link } from '@mui/material';
 
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks/useForm';
+import { useState } from 'react';
 
 const formData = {
-  email: 'email@email.com',
+  email: '',
   password: '',
-  displayName: 'Muster',
+  displayName: '',
 };
 
 const formValidations = {
@@ -20,6 +21,8 @@ const formValidations = {
 };
 
 export const RegisterPage = () => {
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const {
     formState,
     displayName,
@@ -32,8 +35,12 @@ export const RegisterPage = () => {
     displayNameValid,
   } = useForm(formData, formValidations);
 
+  console.log(displayNameValid);
+
   const onSubmit = (event) => {
     event.preventDefault();
+    setFormSubmitted(true);
+
     console.log(formState);
   };
 
@@ -50,7 +57,7 @@ export const RegisterPage = () => {
               name='displayName'
               value={displayName}
               onChange={onInputChange}
-              error={!displayNameValid}
+              error={!!displayNameValid && formSubmitted}
               helperText={displayNameValid}
             ></TextField>
           </Grid>
@@ -63,6 +70,8 @@ export const RegisterPage = () => {
               name='email'
               value={email}
               onChange={onInputChange}
+              error={!!emailValid && formSubmitted}
+              helperText={emailValid}
             ></TextField>
           </Grid>
 
@@ -75,6 +84,8 @@ export const RegisterPage = () => {
               name='password'
               value={password}
               onChange={onInputChange}
+              error={!!passwordValid && formSubmitted}
+              helperText={passwordValid}
             ></TextField>
           </Grid>
 
