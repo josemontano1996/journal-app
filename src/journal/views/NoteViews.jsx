@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SaveOutlined, UploadOutlined } from '@mui/icons-material';
+import { Note, SaveOutlined, UploadOutlined } from '@mui/icons-material';
 import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
@@ -117,7 +117,7 @@ export const NoteViews = () => {
         />
       </Grid>
 
-      <ImageGallery />
+      <ImageGallery images={activeNote.imageUrls} />
     </Grid>
   );
 };
