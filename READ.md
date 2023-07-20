@@ -21,4 +21,4 @@ Please note that image deletion using the Cloudinary API is not included in this
 
 We recommend handling image deletion and other sensitive operations on the server-side to ensure better security, data consistency, and scalability.
 
-Feel free to explore the app and enjoy the journaling experience!
+Feel free to explore the app and enjoy the journaling experience! [Visit Website](https://silver-melba-64cf5d.netlify.app/)
