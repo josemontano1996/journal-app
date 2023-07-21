@@ -15,7 +15,7 @@ export const journalSlice = createSlice({
     }, */
   },
   reducers: {
-    savingNewNote: (state) => {
+    savingNewNote: state => {
       state.isSaving = true;
     },
     addNewEmptyNote: (state, action) => {
@@ -29,22 +29,24 @@ export const journalSlice = createSlice({
     setNotes: (state, action) => {
       state.notes = action.payload;
     },
-    setSaving: (state) => {
+    setSaving: state => {
       state.isSaving = true;
       state.messageSaved = '';
     },
     updateNote: (state, action) => {
       state.isSaving = false;
-      state.notes = state.notes.map((note) =>
-        note.id === action.payload.id ? (note = action.payload) : note
-      );
+      state.notes = state.notes.map(note => (note.id === action.payload.id ? (note = action.payload) : note));
       state.messageSaved = `${action.payload.title} succesfully updated`;
     },
     setPhotosToActiveNote: (state, action) => {
-      state.active.imageUrls = [...state.active.imageUrls, ...action.payload];
+      if (state.active.imageUrls) {
+        state.active.imageUrls = [...state.active.imageUrls, ...action.payload];
+      } else {
+        state.active.imageUrls = [...action.payload];
+      }
       state.isSaving = false;
     },
-    clearNotesLogout: (state) => {
+    clearNotesLogout: state => {
       state.isSaving = false;
       state.messageSaved = '';
       state.notes = [];
@@ -52,7 +54,7 @@ export const journalSlice = createSlice({
     },
     deleteNoteById: (state, action) => {
       state.active = null;
-      state.notes = state.notes.filter((note) => note.id !== action.payload);
+      state.notes = state.notes.filter(note => note.id !== action.payload);
     },
   },
 });
